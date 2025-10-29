@@ -12,8 +12,10 @@ const App = () => {
   };
 
   const editArray = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index);
+    const newTasks = tasks.filter((task) =>  task !== tasks[index]);
     setTasks(newTasks);
+
+
   };
 
   return (
@@ -31,21 +33,21 @@ const App = () => {
             />
           </div>
           <ul className="list-group">
-            {tasks.map((task, index) => (
-              <li
-                key={index}
-                className="list-group-item d-flex justify-content-between align-items-center"
-              >
-                {task}
-                <button
-                  onClick={() => editArray(index)}
-                  type="button"
-                  className="btn btn-danger btn-sm"
+            {tasks.length > 0 ? tasks.map((task,index) => (
+              <li className="list-group-item d-flex justify-content-between">
+                {task}{" "}
+                <button onClick={()=>editArray(index)}
+                  className="btn-delete-task border-0 bg-white"
+                  title="Eliminar tarea"
                 >
-                  x
+                  X
                 </button>
               </li>
-            ))}
+            )) 
+          : 
+          <li className="list-group-item text-center ">No tasks left, add one</li>
+          }
+
           </ul>
         </div>
       </div>
